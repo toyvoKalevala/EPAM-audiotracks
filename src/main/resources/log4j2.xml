@@ -6,7 +6,7 @@
         </Property>
     </Properties>
     <Appenders>
-        <RollingFile name="FileRolling" fileName="../webapps/audiotracks/logs/XML.log" append="true"
+        <RollingFile name="FileRolling" fileName="D:/IDEA/EPAM/audiotracks/src/main/main-app.log" append="true"
                      filePattern="logs/${date:yyyy-MM-dd}/%d{yyyy-MM-dd_HH-mm}.txt">
             <PatternLayout pattern="${property_file}"/>
             <Policies>

@@ -3,7 +3,6 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  color: 000;
   font-size: 16px;
   background-color: gray;
 }
@@ -31,13 +30,13 @@ form {
 .login-row{
 display:block;
 margin-bottom:10px;
-height: 25;
+height: 25px;
 }
 
 .login-row-btn{
 display:block;
 margin-bottom:10px;
-height: 35;
+height: 35px;
 width: auto;
 }
 
@@ -61,35 +60,15 @@ width: auto;
 }
 
 .dropdown {
-  margin-right: 30px;
-  margin-top: 10px;
-}
-
-.dropdown {
+  margin-right: 10px;
+  margin-top: 20px;
   float: right;
   display:inline-block;
-  margin-top: 10px;
-}
-
-.sign-in {
-  float: right;
-  display:inline-block;
-  margin-top: 2px;
 }
 
 .dropbtn {
   display: inline-block;
-  color: white;
-  text-align: centre;
-  padding: 18px 16px;
-  text-decoration: none;
-}
-
-.sign-in-btn {
-  display: inline-block;
-  color: white;
-  text-align: centre;
-  padding: 10px 44px;
+  padding: 2px 2px;
   text-decoration: none;
 }
 
@@ -102,8 +81,7 @@ width: auto;
   display: none;
   position: absolute;
   background-color: #EEEEEE;
-  min-width: 120px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -113,7 +91,7 @@ width: auto;
 
 .dropdown-content a {
   color:  #302F2F;
-  padding: 12px 16px;
+  padding: 2px 2px;
   text-decoration: none;
   display: block;
   text-align: left;
@@ -121,6 +99,20 @@ width: auto;
 
 .dropdown-content a:hover {
   background-color: #A2A2A2;
+}
+
+.sign-in {
+  float: right;
+  display:inline-block;
+  margin-top: 2px;
+}
+
+.sign-in-btn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 10px 44px;
+  text-decoration: none;
 }
 
 .sign-in a {
@@ -200,7 +192,7 @@ width: auto;
 
 /*******FOR MOBILE DEVICE******/
 
-@media only screen and (max-widht:  768px) {
+@media only screen and (max-width:  768px) {
   [class*="column-"] {
     width: 100%;
   }

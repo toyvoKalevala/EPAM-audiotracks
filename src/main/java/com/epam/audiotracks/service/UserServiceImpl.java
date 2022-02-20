@@ -1,9 +1,13 @@
 package com.epam.audiotracks.service;
 
+import com.epam.audiotracks.dao.UserDao;
+import com.epam.audiotracks.dao.UserDaoImpl;
+import com.epam.audiotracks.entity.User;
+import com.epam.audiotracks.exeption.DaoException;
+import com.epam.audiotracks.exeption.UserServiceException;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.sql.*;
 
 public class UserServiceImpl implements UserService {
 
@@ -11,21 +15,19 @@ public class UserServiceImpl implements UserService {
     private boolean isLogin;
 
     @Override
-    public boolean login(String login, String password) {
+    public boolean login(String login, String password) throws UserServiceException {
+
+        UserDao userDao = new UserDaoImpl();
 
         try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/audiotracks", "root", "root");
-            logger.info("Connected to DB");
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT login, password FROM users");
-            while (resultSet.next()) {
-                String userLogin = resultSet.getString(1);
-                String userPassword = resultSet.getString(2);
-                isLogin = userLogin.equals(login) && userPassword.equals(password);
+            if (userDao.findUserByLoginAndPassword(login, password).isPresent()) {
+                User user = userDao.findUserByLoginAndPassword(login, password).get();
+                String userLogin = user.getLogin();
+                String userPassword = user.getPassword();
+                isLogin = userLogin.equals(login) && userPassword.equals(DigestUtils.md5Hex(password));
             }
-        } catch (SQLException e) {
-            logger.error(e.getMessage());
+        } catch (DaoException e) {
+            throw new UserServiceException(e);
         }
         return isLogin;
     }

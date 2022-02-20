@@ -1,5 +1,6 @@
 package com.epam.audiotracks.command;
 
+import com.epam.audiotracks.exeption.UserServiceException;
 import com.epam.audiotracks.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +18,7 @@ public class LoginCommand implements Command {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws UserServiceException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         if (userService.login(login, password)) {

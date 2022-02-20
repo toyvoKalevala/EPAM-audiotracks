@@ -13,11 +13,11 @@
         </div>
 
         <div class="dropdown">
-          <a class="dropbtn">Language</a>
+          <a class="dropbtn"><img src="static/images/eng.jpg"></a>
           <div class="dropdown-content">
-            <a href="test.html">eng</a>
-            <a href="test.html">rus</a>
-            <a href="test.html">by</a>
+            <a href="test.html"><img src="static/images/eng.jpg"></a>
+            <a href="test.html"><img src="static/images/rus.jpg"></a>
+            <a href="test.html"><img src="static/images/by.jpg"></a>
           </div>
         </div>
 
@@ -25,11 +25,12 @@
 
         <div class="container">
             <form method="post" action="controller?command=login">
+                <%--@declare id="login"--%><%--@declare id="password"--%>
                 <label class="login-row" for="login">LOGIN</label>
                 <input class="login-row" type="text" name="login"/>
                 <label class="login-row" for="password">PASSWORD</label>
                 <input class="login-row" type="password" name="password"/>
-                <input class="login-row-btn" type="submit" value="LET'S ROCK!"/>
+                <input class="login-row-btn" type="submit" value="LET'S ROCK!!!"/>
                 <label style="color:red";>${errorMessage}</label>
             </form>
         </div>

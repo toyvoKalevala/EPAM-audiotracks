@@ -2,6 +2,7 @@ package com.epam.audiotracks.controller;
 
 import com.epam.audiotracks.command.Command;
 import com.epam.audiotracks.command.CommandFactory;
+import com.epam.audiotracks.exeption.UserServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,15 +18,23 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        process(request, response);
+        try {
+            process(request, response);
+        } catch (UserServiceException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        process(request, response);
+        try {
+            process(request, response);
+        } catch (UserServiceException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, UserServiceException {
         String commandLine = request.getParameter("command");
         logger.info("Got command");
         CommandFactory commandFactory = new CommandFactory();

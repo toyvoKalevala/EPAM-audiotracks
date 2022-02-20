@@ -21,14 +21,14 @@
       <a class="sign-in-btn" href="index.jsp"><img src="static/images/exit.png"></a>
     </div>
 
-    <div class="dropdown">
-      <a class="dropbtn">Language</a>
-      <div class="dropdown-content">
-        <a href="test.html">eng</a>
-        <a href="test.html">rus</a>
-        <a href="test.html">by</a>
-      </div>
-    </div>
+        <div class="dropdown">
+          <a class="dropbtn"><img src="static/images/eng.jpg"></a>
+          <div class="dropdown-content">
+            <a href="test.html"><img src="static/images/eng.jpg"></a>
+            <a href="test.html"><img src="static/images/rus.jpg"></a>
+            <a href="test.html"><img src="static/images/by.jpg"></a>
+          </div>
+        </div>
 
   </header>
 
@@ -36,9 +36,9 @@
 
     <div class="left-column">
       <div id="buttons">
-        <a class="button-menu" href="test.html"=>Tracks catalog</a>
-        <a class="button-menu" href="test.html"=>My tracks</a>
-        <a class="button-menu" href="test.html"=>Users management</a>
+        <a class="button-menu" href="test.html">Tracks catalog</a>
+        <a class="button-menu" href="test.html">My tracks</a>
+        <a class="button-menu" href="test.html">Users management</a>
       </div>
     </div>
 
