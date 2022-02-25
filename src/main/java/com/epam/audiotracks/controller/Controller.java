@@ -2,7 +2,7 @@ package com.epam.audiotracks.controller;
 
 import com.epam.audiotracks.command.Command;
 import com.epam.audiotracks.command.CommandFactory;
-import com.epam.audiotracks.exeption.UserServiceException;
+import com.epam.audiotracks.exeption.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,7 +20,7 @@ public class Controller extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             process(request, response);
-        } catch (UserServiceException e) {
+        } catch (ServiceException e) {
             e.printStackTrace();
         }
     }
@@ -29,18 +29,20 @@ public class Controller extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             process(request, response);
-        } catch (UserServiceException e) {
+        } catch (ServiceException e) {
             e.printStackTrace();
         }
     }
 
-    private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, UserServiceException {
+    private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException {
         String commandLine = request.getParameter("command");
         logger.info("Got command");
         CommandFactory commandFactory = new CommandFactory();
+        logger.info("Create CommandFactory");
         Command command = commandFactory.createCommand(commandLine);
+        logger.info("Create Command");
         String page = command.execute(request, response);
-        logger.info("Executed command");
+        logger.info("Execute command");
         request.getRequestDispatcher(page).forward(request, response);
     }
 }

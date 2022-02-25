@@ -1,12 +1,14 @@
 package com.epam.audiotracks.command;
 
-import com.epam.audiotracks.exeption.UserServiceException;
+import com.epam.audiotracks.entity.User;
+import com.epam.audiotracks.exeption.ServiceException;
 import com.epam.audiotracks.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 public class LoginCommand implements Command {
 
@@ -18,11 +20,15 @@ public class LoginCommand implements Command {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws UserServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         String login = request.getParameter("login");
+        logger.debug("Got login");
         String password = request.getParameter("password");
-        if (userService.login(login, password)) {
-            request.getSession().setAttribute("user", "admin");
+        logger.debug("Got password");
+        Optional<User> user = userService.login(login, password);
+        logger.info("Get user from DB");
+        if (user.isPresent()) {
+            request.getSession().setAttribute("user", login);
             logger.info("Credentials OK");
             return "WEB-INF/view/main.jsp";
         } else {

@@ -1,7 +1,8 @@
 package com.epam.audiotracks.entity;
 
-public class User{
+public class User implements Identifiable {
 
+    public static final String TABLE = "users";
     private String login;
     private String password;
     private boolean isAdmin;
