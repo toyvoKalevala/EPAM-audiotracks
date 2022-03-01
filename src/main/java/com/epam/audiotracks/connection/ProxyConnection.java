@@ -62,7 +62,7 @@ public class ProxyConnection implements Connection {
 
     @Override
     public void close() throws SQLException {
-        connection.close();
+        pool.returnConnection(this);
     }
 
     public void returnConnection() {

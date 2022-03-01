@@ -9,6 +9,12 @@ public class CommandFactory {
         switch (command) {
             case "login":
                 return new LoginCommand(new UserServiceImpl(new DaoHelperFactory()));
+            case "changeLocale_ru":
+                return new ChangeLocaleCommandRu();
+            case "changeLocale_eng":
+                return new ChangeLocaleCommandEng();
+            case "changeLocale_by":
+                return new ChangeLocaleCommandBy();
             default:
                 throw new IllegalArgumentException("Unknown command = " + command);
         }

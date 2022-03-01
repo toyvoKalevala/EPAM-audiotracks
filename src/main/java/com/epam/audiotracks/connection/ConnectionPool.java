@@ -17,7 +17,7 @@ public class ConnectionPool {
     private static ConnectionPool instance;
 
     private static ReentrantLock connectionsLock = new ReentrantLock();
-    private static final int POOL_SIZE = 1;
+    private static final int POOL_SIZE = 10;
     private static final Semaphore SEMAPHORE = new Semaphore(POOL_SIZE);
 
     private static final Logger logger = LogManager.getLogger();
@@ -83,6 +83,7 @@ public class ConnectionPool {
             if (connectionsInUse.contains(proxyConnection)) {
                 connectionsInUse.remove(proxyConnection);
                 availableConnections.offer(proxyConnection);
+                logger.info("Connection was returned");
                 SEMAPHORE.release();
             }
         } finally {

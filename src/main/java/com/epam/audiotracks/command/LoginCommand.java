@@ -28,9 +28,9 @@ public class LoginCommand implements Command {
         Optional<User> user = userService.login(login, password);
         logger.info("Get user from DB");
         if (user.isPresent()) {
-            request.getSession().setAttribute("user", login);
+            request.getSession().setAttribute("user", user);
             logger.info("Credentials OK");
-            return "WEB-INF/view/main.jsp";
+            return "WEB-INF/view/mainPage.jsp";
         } else {
             request.setAttribute("errorMessage", "Invalid Credentials");
             logger.error("Invalid credentials");
