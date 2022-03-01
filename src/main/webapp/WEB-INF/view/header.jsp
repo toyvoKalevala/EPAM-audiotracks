@@ -7,7 +7,7 @@
 <header class="header">
 
     <div class="logo">
-        <a href="index.jsp"><img src="static/images/logo.jpg"></a>
+        <a href="<c:url value="controller?command=goOnMain"/>"><img src="static/images/logo.jpg"></a>
     </div>
 
     <div class="dropdown">
