@@ -7,9 +7,10 @@ public class User implements Identifiable {
     private String password;
     private boolean isAdmin;
 
-    public User(String login, String password) {
+    public User(String login, String password, boolean isAdmin) {
         this.login = login;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
 
     public String getLogin() {

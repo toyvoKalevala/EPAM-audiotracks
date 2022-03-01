@@ -17,37 +17,27 @@
 
 <div class="flex-container">
 
-    <div class="left-column">
-        <div id="buttons">
-            <a class="button-menu" href="test.html"><fmt:message key="menu.catalog"/></a>
-            <a class="button-menu" href="test.html"><fmt:message key="menu.userTracks"/></a>
-            <a class="button-menu" href="test.html"><fmt:message key="menu.users"/></a>
-        </div>
-    </div>
+    <jsp:include page="leftColumn.jsp"/>
 
     <div class="main">
 
-        <p><fmt:message key="main.welcome"/></p>
+        <c:if test="${isAdmin == false}">
+            <p><fmt:message key="main.welcome"/></p>
+        </c:if>
 
-        <div class="flex-table">
-
-            <div class="left-table">
-                <c:forEach var="track" items="${tracks}">
-                    <div class="list">
-                            ${track.name}<br>
-                    </div>
-                </c:forEach>
+        <c:if test="${isAdmin == true}">
+            <div class="admin-button">
+                <p><fmt:message key="button.addNewGenre"/></p>
             </div>
-
-            <div class="right-table">
-                <c:forEach var="feedback" items="${feedbacks}">
-                    <div class="list">
-                            ${feedback.text}
-                    </div>
-                </c:forEach>
+            <div class="admin-button">
+                <p><fmt:message key="button.addNewAlbum"/></p>
             </div>
+            <div class="admin-button">
+                <p><fmt:message key="button.addNewTrack"/></p>
+            </div>
+        </c:if>
 
-        </div>
+        <jsp:include page="popularTracks.jsp"/>
 
     </div>
 

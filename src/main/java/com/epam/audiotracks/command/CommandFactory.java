@@ -1,5 +1,10 @@
 package com.epam.audiotracks.command;
 
+import com.epam.audiotracks.command.locale.ChangeLocaleCommandBy;
+import com.epam.audiotracks.command.locale.ChangeLocaleCommandEng;
+import com.epam.audiotracks.command.locale.ChangeLocaleCommandRu;
+import com.epam.audiotracks.command.user.LoginCommand;
+import com.epam.audiotracks.command.user.LogoutCommand;
 import com.epam.audiotracks.dao.DaoHelperFactory;
 import com.epam.audiotracks.service.UserServiceImpl;
 
@@ -15,6 +20,8 @@ public class CommandFactory {
                 return new ChangeLocaleCommandEng();
             case "changeLocale_by":
                 return new ChangeLocaleCommandBy();
+            case "logout":
+                return new LogoutCommand();
             default:
                 throw new IllegalArgumentException("Unknown command = " + command);
         }

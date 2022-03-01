@@ -14,6 +14,8 @@ public class UserRowMapper implements RowMapper<User> {
     @Override
     public User map(ResultSet resultSet) throws SQLException {
         logger.debug("Try to create user");
-        return new User(resultSet.getString("login"), resultSet.getString("password"));
+        return new User(resultSet.getString("login"),
+                        resultSet.getString("password"),
+                        resultSet.getBoolean("is_admin"));
     }
 }

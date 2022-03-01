@@ -7,11 +7,11 @@
 <header class="header">
 
     <div class="logo">
-        <a href="mainPage.jsp"><img src="static/images/logo.jpg"></a>
+        <a href="WEB-INF/view/mainPage.jsp"><img src="static/images/logo.jpg"></a>
     </div>
 
     <div class="sign-in">
-        <a class="sign-in-btn" href="/WEB-INF/view/index.jsp"><img src="static/images/exit.png"></a>
+        <a class="sign-in-btn" href="<c:url value="controller?command=logout"/>"><img src="static/images/exit.png"></a>
     </div>
 
     <div class="dropdown">

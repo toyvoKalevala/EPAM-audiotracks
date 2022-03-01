@@ -1,5 +1,6 @@
-package com.epam.audiotracks.command;
+package com.epam.audiotracks.command.user;
 
+import com.epam.audiotracks.command.Command;
 import com.epam.audiotracks.entity.User;
 import com.epam.audiotracks.exeption.ServiceException;
 import com.epam.audiotracks.service.UserService;
@@ -28,13 +29,14 @@ public class LoginCommand implements Command {
         Optional<User> user = userService.login(login, password);
         logger.info("Get user from DB");
         if (user.isPresent()) {
-            request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute("user", user.get());
+            request.getSession().setAttribute("isAdmin", user.get().isAdmin());
             logger.info("Credentials OK");
             return "WEB-INF/view/mainPage.jsp";
         } else {
             request.setAttribute("errorMessage", "Invalid Credentials");
             logger.error("Invalid credentials");
-            return "index.jsp";
+            return "WEB-INF/view/index.jsp";
         }
     }
 }
