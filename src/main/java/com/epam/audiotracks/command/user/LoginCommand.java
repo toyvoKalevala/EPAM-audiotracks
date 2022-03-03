@@ -30,7 +30,7 @@ public class LoginCommand implements Command {
         logger.info("Get user from DB");
         if (user.isPresent()) {
             request.getSession().setAttribute("user", user.get());
-            request.getSession().setAttribute("isAdmin", user.get().isAdmin());
+            request.getSession().setAttribute("isAdmin", user.get().getIsAdmin());
             logger.info("Credentials OK");
             return "WEB-INF/view/mainPage.jsp";
         } else {

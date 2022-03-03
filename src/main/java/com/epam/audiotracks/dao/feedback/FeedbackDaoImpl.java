@@ -22,6 +22,11 @@ public class FeedbackDaoImpl extends AbstractDao<Feedback> implements FeedbackDa
     }
 
     @Override
+    public String getTableName() {
+        return null;
+    }
+
+    @Override
     public List<Feedback> getAll() throws DaoException {
         return executeQuery(GET_ALL_FEEDBACKS, new FeedbackRowMapper());
     }

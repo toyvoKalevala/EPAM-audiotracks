@@ -22,6 +22,11 @@ public class TrackDaoImpl extends AbstractDao<Track> implements TrackDao {
         super(connection);
     }
 
+    @Override
+    public String getTableName() {
+        return null;
+    }
+
     List<Track> tracks = new ArrayList<>();
 
     @Override

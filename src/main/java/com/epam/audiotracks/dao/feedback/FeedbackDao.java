@@ -7,7 +7,7 @@ import com.epam.audiotracks.exeption.DaoException;
 
 import java.util.List;
 
-public interface FeedbackDao extends Dao {
+public interface FeedbackDao extends Dao<Feedback> {
 
     List<Feedback> getAll() throws DaoException;
 }

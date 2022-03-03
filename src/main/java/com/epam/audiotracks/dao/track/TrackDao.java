@@ -6,7 +6,7 @@ import com.epam.audiotracks.exeption.DaoException;
 
 import java.util.List;
 
-public interface TrackDao extends Dao {
+public interface TrackDao extends Dao<Track> {
 
     List<Track> getAll() throws DaoException;
 

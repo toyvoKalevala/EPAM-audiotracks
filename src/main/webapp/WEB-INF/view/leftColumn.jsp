@@ -11,7 +11,7 @@
         </c:if>
         <a class="button-menu" href="test.html"><fmt:message key="menu.catalog"/></a>
         <c:if test="${isAdmin == true}">
-            <a class="button-menu" href="test.html"><fmt:message key="menu.users"/></a>
+            <a class="button-menu" href="controller?command=userManagement"><fmt:message key="menu.users"/></a>
         </c:if>
     </div>
 </div>

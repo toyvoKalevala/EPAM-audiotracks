@@ -15,7 +15,7 @@
     </div>
 
     <div class="dropdown">
-        <a class="dropbtn"><img src="static/images/eng.jpg"></a>
+        <a class="dropbtn"><img src="static/images/lang.png"></a>
         <div class="dropdown-content">
             <a href="<c:url value="controller?command=changeLocale_eng"/>"><img src="static/images/eng.jpg"></a>
             <a href="<c:url value="controller?command=changeLocale_ru"/>"><img src="static/images/rus.jpg"></a>

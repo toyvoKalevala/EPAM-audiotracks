@@ -16,6 +16,8 @@ public class UserRowMapper implements RowMapper<User> {
         logger.debug("Try to create user");
         return new User(resultSet.getString("login"),
                         resultSet.getString("password"),
-                        resultSet.getBoolean("is_admin"));
+                        resultSet.getBoolean("is_admin"),
+                        resultSet.getInt("discount"),
+                        resultSet.getInt("id"));
     }
 }

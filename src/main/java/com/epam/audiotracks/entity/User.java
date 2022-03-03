@@ -6,11 +6,15 @@ public class User implements Identifiable {
     private String login;
     private String password;
     private boolean isAdmin;
+    private int discount;
+    private int id;
 
-    public User(String login, String password, boolean isAdmin) {
+    public User(String login, String password, boolean isAdmin, int discount, int id) {
         this.login = login;
         this.password = password;
         this.isAdmin = isAdmin;
+        this.discount = discount;
+        this.id = id;
     }
 
     public String getLogin() {
@@ -29,11 +33,15 @@ public class User implements Identifiable {
         this.password = password;
     }
 
-    public boolean isAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public int getDiscount() {
+        return discount;
+    }
+
+    public int getId() {
+        return id;
     }
 }

@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class AbstractDao<T extends Identifiable> implements Dao {
+public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
 
     private final Connection connection;
 
@@ -62,4 +62,12 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao {
             return Optional.empty();
         }
     }
+
+    public List<T> findAll() throws DaoException {
+        String table = getTableName();
+        RowMapper<T> mapper = (RowMapper<T>) RowMapper.create(table);
+        return executeQuery("SELECT * FROM " + table, mapper);
+    }
+
+    public abstract String getTableName();
 }

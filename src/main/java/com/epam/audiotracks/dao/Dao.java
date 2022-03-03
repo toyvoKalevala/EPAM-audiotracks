@@ -1,5 +1,11 @@
 package com.epam.audiotracks.dao;
 
-public interface Dao {
+import com.epam.audiotracks.exeption.DaoException;
+
+import java.util.List;
+
+public interface Dao<T> {
+
+    List<T> findAll() throws DaoException;
 
 }

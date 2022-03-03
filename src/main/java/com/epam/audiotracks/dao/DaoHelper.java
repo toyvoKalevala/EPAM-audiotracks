@@ -6,6 +6,8 @@ import com.epam.audiotracks.dao.feedback.FeedbackDao;
 import com.epam.audiotracks.dao.feedback.FeedbackDaoImpl;
 import com.epam.audiotracks.dao.track.TrackDao;
 import com.epam.audiotracks.dao.track.TrackDaoImpl;
+import com.epam.audiotracks.dao.user.UserDao;
+import com.epam.audiotracks.dao.user.UserDaoImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
