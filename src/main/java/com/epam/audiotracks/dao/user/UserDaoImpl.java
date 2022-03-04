@@ -14,6 +14,7 @@ import java.util.Optional;
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     private static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE login = ? AND password = MD5(?)";
+    private static final String UPDATE_DISCOUNT = "UPDATE users SET discount = ? WHERE id = ?";
 
     private static final Logger logger = LogManager.getLogger();
 
@@ -33,5 +34,10 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                 new UserRowMapper(),
                 login,
                 password);
+    }
+
+    @Override
+    public void changeUserDiscountByID(int discount, int id) throws DaoException {
+        executeUpdate(UPDATE_DISCOUNT, discount, id);
     }
 }

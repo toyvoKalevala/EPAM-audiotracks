@@ -3,10 +3,7 @@ package com.epam.audiotracks.command;
 import com.epam.audiotracks.command.locale.ChangeLocaleCommandBy;
 import com.epam.audiotracks.command.locale.ChangeLocaleCommandEng;
 import com.epam.audiotracks.command.locale.ChangeLocaleCommandRu;
-import com.epam.audiotracks.command.user.GoOnMainCommand;
-import com.epam.audiotracks.command.user.LoginCommand;
-import com.epam.audiotracks.command.user.LogoutCommand;
-import com.epam.audiotracks.command.user.UserManagementCommand;
+import com.epam.audiotracks.command.user.*;
 import com.epam.audiotracks.dao.DaoHelperFactory;
 import com.epam.audiotracks.service.UserServiceImpl;
 
@@ -28,6 +25,8 @@ public class CommandFactory {
                 return new GoOnMainCommand();
             case "userManagement":
                 return new UserManagementCommand(new UserServiceImpl(new DaoHelperFactory()));
+            case "changeDiscount":
+                return new ChangeDiscountCommand(new UserServiceImpl(new DaoHelperFactory()));
             default:
                 throw new IllegalArgumentException("Unknown command = " + command);
         }

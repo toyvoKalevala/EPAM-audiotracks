@@ -30,7 +30,7 @@ form {
 .login-row {
     display: block;
     margin-bottom: 10px;
-    height: 25px;
+    padding: 5px;
 }
 
 .login-row-btn {
@@ -80,7 +80,7 @@ form {
     display: none;
     position: absolute;
     background-color: #EEEEEE;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
     margin-left: 5px;
 }
@@ -231,12 +231,38 @@ p {
     cursor: pointer;
 }
 
+input {
+    font-size: medium;
+    padding: 5px;
+}
+
+table {
+    width: 50%;
+    margin-bottom: 20px;
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
+    margin-top: 25px;
+}
+
+table th {
+    font-weight: bold;
+    padding: 5px;
+    background: #efefef;
+    border: 1px solid #dddddd;
+    text-align: left;
+}
+
+table td {
+    border: 1px solid #dddddd;
+    padding: 5px;
+}
+
 /*******FOOTER******/
 
 .footer {
     width: 100%;
     float: left;
-    margin-top: 0px;
+    margin-top: 0;
     background-color: #302F2F;
     position: absolute;
     bottom: 0;
@@ -272,7 +298,7 @@ p {
         margin-right: 40px;
     }
 
-    dropbtn, .sign-in-btn {
+    .dropbtn, .sign-in-btn {
         padding: 9px;
     }
 

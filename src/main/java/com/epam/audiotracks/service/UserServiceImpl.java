@@ -43,4 +43,15 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public void changeUserDiscount(int discount, int id) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            UserDao dao = daoHelper.createUserDao();
+            dao.changeUserDiscountByID(discount, id);
+        }catch (DaoException e){
+            throw new ServiceException(e);
+        }
+    }
+
 }

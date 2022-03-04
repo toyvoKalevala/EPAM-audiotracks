@@ -9,5 +9,9 @@ import java.util.Optional;
 public interface UserService {
 
     Optional<User> login(String login, String password) throws ServiceException;
+
     List<User> getAllUsers() throws ServiceException;
+
+    void changeUserDiscount(int discount, int id) throws ServiceException;
+
 }

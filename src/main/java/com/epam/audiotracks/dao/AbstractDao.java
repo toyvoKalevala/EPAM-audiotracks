@@ -41,6 +41,15 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
         }
     }
 
+    protected void executeUpdate(String query, Object... params) throws DaoException {
+
+        try (PreparedStatement statement = createStatement(query, params)) {
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
     private PreparedStatement createStatement(String query, Object... params) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(query);
         logger.info(params.length + " " + Arrays.toString(params));

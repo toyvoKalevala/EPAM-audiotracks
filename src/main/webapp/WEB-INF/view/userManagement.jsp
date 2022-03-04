@@ -22,7 +22,7 @@
     <div class="main">
         <table>
             <thead>
-            <tr>
+            <tr style="padding-top: 10px">
                 <th>id</th>
                 <th><fmt:message key="user.login"/></th>
                 <th><fmt:message key="user.role"/></th>
@@ -31,9 +31,10 @@
             </thead>
             <tbody>
 
-            <form method="post" action="controller?command=logout"/>
-            <input type="text" name="userId" value="<fmt:message key="input.enterUserId"/>"/>
-            <input type="text" name="userDiscount" value="<fmt:message key="input.enterUserDiscount"/>"/>
+            <form method="post" action="controller?command=changeDiscount"/>
+            <input type="text" name="userId" value="<fmt:message key="input.enterUserId"/>" onfocus="this.value=''"/>
+            <input type="text" name="userDiscount" value="<fmt:message key="input.enterUserDiscount"/>"
+                   onfocus="this.value=''"/>
             <input type="submit" value="<fmt:message key="button.changeDiscount"/>"/>
             <form/>
 

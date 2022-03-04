@@ -10,4 +10,6 @@ public interface UserDao extends Dao<User> {
 
     Optional<User> findUserByLoginAndPassword(String login, String password) throws DaoException;
 
+    void changeUserDiscountByID(int discount, int id) throws DaoException;
+
 }
