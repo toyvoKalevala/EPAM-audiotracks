@@ -7,7 +7,7 @@
 <div class="left-column">
     <div id="buttons">
         <c:if test="${isAdmin == false}">
-            <a class="button-menu" href="test.html"><fmt:message key="menu.userTracks"/></a>
+            <a class="button-menu" href="controller?command=userTracks"><fmt:message key="menu.userTracks"/></a>
         </c:if>
         <a class="button-menu" href="test.html"><fmt:message key="menu.catalog"/></a>
         <c:if test="${isAdmin == true}">

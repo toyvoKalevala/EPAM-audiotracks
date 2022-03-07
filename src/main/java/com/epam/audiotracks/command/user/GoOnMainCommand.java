@@ -12,7 +12,7 @@ public class GoOnMainCommand implements Command {
         if (request.getSession().getAttribute("user") == null) {
             return "WEB-INF/view/index.jsp";
         } else {
-            return "WEB-INF/view/mainPage.jsp";
+            return "/controller?command=selectTracks";
         }
     }
 }

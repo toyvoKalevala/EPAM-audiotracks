@@ -4,22 +4,29 @@
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="languages"/>
 
-<div class="flex-table">
+<table>
+    <thead>
+    <tr style="padding-top: 10px">
+        <th><fmt:message key="track.id"/></th>
+        <th><fmt:message key="track.name"/></th>
+        <th><fmt:message key="track.album"/></th>
+        <th><fmt:message key="track.price"/></th>
+    </tr>
+    </thead>
+    <tbody>
 
-    <div class="left-table">
-        <c:forEach var="track" items="${tracks}">
-            <div class="list">
-                    ${track.name}<br>
-            </div>
-        </c:forEach>
-    </div>
+    <form method="post" action="controller?command=orderTrack"/>
+    <input type="text" name="trackId" value="<fmt:message key="input.enterTrackId"/>" onfocus="this.value=''"/>
+    <input type="submit" value="<fmt:message key="button.orderTrack"/>"/>
+    <form/>
 
-    <div class="right-table">
-        <c:forEach var="feedback" items="${feedbacks}">
-            <div class="list">
-                    ${feedback.text}
-            </div>
-        </c:forEach>
-    </div>
-
-</div>
+    <c:forEach var="track" items="${tracks}">
+        <tr>
+            <td>${track.id}</td>
+            <td>${track.name}</td>
+            <td>${track.album}</td>
+            <td>${track.price}</td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>

@@ -1,8 +1,11 @@
-package com.epam.audiotracks.service;
+package com.epam.audiotracks.service.user;
 
 import com.epam.audiotracks.dao.DaoHelper;
 import com.epam.audiotracks.dao.DaoHelperFactory;
+import com.epam.audiotracks.dao.order.OrderDao;
 import com.epam.audiotracks.dao.user.UserDao;
+import com.epam.audiotracks.dto.AudioOrderDto;
+import com.epam.audiotracks.entity.Order;
 import com.epam.audiotracks.entity.User;
 import com.epam.audiotracks.exeption.DaoException;
 import com.epam.audiotracks.exeption.ServiceException;
@@ -15,7 +18,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LogManager.getLogger();
-    private DaoHelperFactory daoHelperFactory;
+    private final DaoHelperFactory daoHelperFactory;
 
     public UserServiceImpl(DaoHelperFactory daoHelperFactory) {
         this.daoHelperFactory = daoHelperFactory;
@@ -49,7 +52,17 @@ public class UserServiceImpl implements UserService {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             UserDao dao = daoHelper.createUserDao();
             dao.changeUserDiscountByID(discount, id);
-        }catch (DaoException e){
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<AudioOrderDto> getAllUserOrders(int id) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            OrderDao orderDao = daoHelper.createOrderDao();
+            return orderDao.findAllByUserId(id);
+        } catch (DaoException e) {
             throw new ServiceException(e);
         }
     }

@@ -1,5 +1,6 @@
 package com.epam.audiotracks.dao;
 
+import com.epam.audiotracks.dto.Dto;
 import com.epam.audiotracks.rowmapper.RowMapper;
 import com.epam.audiotracks.entity.Identifiable;
 import com.epam.audiotracks.exeption.DaoException;
@@ -33,6 +34,21 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
             List<T> entities = new ArrayList<>();
             while (resultSet.next()) {
                 T entity = rowMapper.map(resultSet);
+                entities.add(entity);
+            }
+            return entities;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    protected <E extends Dto>List<E> executeJoinQuery(String query, RowMapper<E> mapper, Object... params) throws DaoException {
+
+        try(PreparedStatement statement = createStatement(query, params)) {
+            ResultSet resultSet = statement.executeQuery();
+            List<E> entities = new ArrayList<>();
+            while (resultSet.next()){
+                E entity = mapper.map(resultSet);
                 entities.add(entity);
             }
             return entities;

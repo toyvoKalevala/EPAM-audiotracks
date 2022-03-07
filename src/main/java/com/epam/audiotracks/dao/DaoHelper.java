@@ -4,6 +4,8 @@ import com.epam.audiotracks.connection.ConnectionPool;
 import com.epam.audiotracks.connection.ProxyConnection;
 import com.epam.audiotracks.dao.feedback.FeedbackDao;
 import com.epam.audiotracks.dao.feedback.FeedbackDaoImpl;
+import com.epam.audiotracks.dao.order.OrderDao;
+import com.epam.audiotracks.dao.order.OrderDaoImpl;
 import com.epam.audiotracks.dao.track.TrackDao;
 import com.epam.audiotracks.dao.track.TrackDaoImpl;
 import com.epam.audiotracks.dao.user.UserDao;
@@ -13,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 public class DaoHelper implements AutoCloseable {
 
-    private ProxyConnection connection;
+    private final ProxyConnection connection;
 
     private static final Logger logger = LogManager.getLogger();
 
@@ -31,6 +33,10 @@ public class DaoHelper implements AutoCloseable {
 
     public FeedbackDao createFeedbackDao() {
         return new FeedbackDaoImpl(connection);
+    }
+
+    public OrderDao createOrderDao () {
+        return new OrderDaoImpl(connection);
     }
 
     @Override

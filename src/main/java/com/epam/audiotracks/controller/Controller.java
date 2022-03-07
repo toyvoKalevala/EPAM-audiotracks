@@ -45,39 +45,14 @@ public class Controller extends HttpServlet {
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, DaoException {
         String commandLine = request.getParameter("command");
-        logger.info("Got command");
+        logger.info("Got command" + commandLine);
         CommandFactory commandFactory = new CommandFactory();
         logger.info("Create CommandFactory");
         Command command = commandFactory.createCommand(commandLine);
-        logger.info("Create Command");
+        logger.info("Create Command" + commandLine);
         String page = command.execute(request, response);
-        logger.info("Execute command");
-//        request.setAttribute("tracks", generateTracksList());
-//        request.setAttribute("feedbacks", generateFeedbacksList());
+        logger.info("Execute command " + commandLine);
         request.getRequestDispatcher(page).forward(request, response);
     }
 
-    private List<Track> generateTracksList() throws DaoException {
-        DaoHelperFactory daoHelperFactory = new DaoHelperFactory();
-        DaoHelper daoHelper = daoHelperFactory.create();
-        TrackDao trackDao = daoHelper.createTrackDao();
-        List<Track> tracks = trackDao.getAll();
-        List<Track> listOfThree = new ArrayList<>();
-        for (int i = 0; i <= 2; i++) {
-            listOfThree.add(i, tracks.get(i));
-        }
-        return listOfThree;
-    }
-
-    private List<Feedback> generateFeedbacksList() throws DaoException {
-        DaoHelperFactory daoHelperFactory = new DaoHelperFactory();
-        DaoHelper daoHelper = daoHelperFactory.create();
-        FeedbackDao feedbackDao = daoHelper.createFeedbackDao();
-        List<Feedback> feedbacks = feedbackDao.getAll();
-        List<Feedback> listOfThree = new ArrayList<>();
-        for (int i = 0; i <= 2; i++) {
-            listOfThree.add(i, feedbacks.get(i));
-        }
-        return listOfThree;
-    }
 }

@@ -22,7 +22,8 @@
     <div class="main">
 
         <c:if test="${isAdmin == false}">
-            <p><fmt:message key="main.welcome"/></p>
+<%--            <p><fmt:message key="main.welcome"/></p>--%>
+            <jsp:include page="popularTracks.jsp"/>
         </c:if>
 
         <c:if test="${isAdmin == true}">
@@ -36,8 +37,6 @@
                 <p><fmt:message key="button.addNewTrack"/></p>
             </div>
         </c:if>
-
-        <jsp:include page="popularTracks.jsp"/>
 
     </div>
 

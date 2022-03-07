@@ -1,5 +1,7 @@
-package com.epam.audiotracks.service;
+package com.epam.audiotracks.service.user;
 
+import com.epam.audiotracks.dto.AudioOrderDto;
+import com.epam.audiotracks.entity.Order;
 import com.epam.audiotracks.entity.User;
 import com.epam.audiotracks.exeption.ServiceException;
 
@@ -13,5 +15,7 @@ public interface UserService {
     List<User> getAllUsers() throws ServiceException;
 
     void changeUserDiscount(int discount, int id) throws ServiceException;
+
+    List<AudioOrderDto> getAllUserOrders(int id) throws ServiceException;
 
 }

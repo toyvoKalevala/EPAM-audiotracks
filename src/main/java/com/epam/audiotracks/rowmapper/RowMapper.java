@@ -1,6 +1,7 @@
 package com.epam.audiotracks.rowmapper;
 
 import com.epam.audiotracks.entity.Identifiable;
+import com.epam.audiotracks.entity.Track;
 import com.epam.audiotracks.entity.User;
 
 import java.sql.ResultSet;
@@ -10,10 +11,12 @@ public interface RowMapper<T extends Identifiable> {
 
     T map(ResultSet resultSet) throws SQLException;
 
-    static RowMapper<? extends Identifiable> create(String table){
-        switch (table){
+    static RowMapper<? extends Identifiable> create(String table) {
+        switch (table) {
             case User.TABLE:
                 return new UserRowMapper();
+            case Track.TABLE:
+                return new TrackRowMapper();
             default:
                 throw new IllegalArgumentException("Unknown table = " + table);
         }

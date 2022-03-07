@@ -1,22 +1,22 @@
 package com.epam.audiotracks.dao.track;
 
 import com.epam.audiotracks.dao.AbstractDao;
-import com.epam.audiotracks.dao.track.TrackDao;
 import com.epam.audiotracks.entity.Track;
 import com.epam.audiotracks.exeption.DaoException;
-import com.epam.audiotracks.rowmapper.TrackRowMapper;
+import com.epam.audiotracks.rowmapper.RowMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TrackDaoImpl extends AbstractDao<Track> implements TrackDao {
 
-    private static final String GET_ALL_TRACKS = "SELECT * FROM tracks";
-
     private static final Logger logger = LogManager.getLogger();
+
+    private final static String FIND_ALL_TRACKS_JOIN_ALBUM = "SELECT tracks.id, tracks.name, albums.name as album, tracks.price " +
+            "from tracks " +
+            "inner join albums on album_id=albums.id";
 
     public TrackDaoImpl(Connection connection) {
         super(connection);
@@ -24,13 +24,14 @@ public class TrackDaoImpl extends AbstractDao<Track> implements TrackDao {
 
     @Override
     public String getTableName() {
-        return null;
+        return Track.TABLE;
     }
-
-    List<Track> tracks = new ArrayList<>();
 
     @Override
-    public List<Track> getAll() throws DaoException {
-        return executeQuery(GET_ALL_TRACKS, new TrackRowMapper());
+    public List<Track> findAll() throws DaoException {
+        String table = getTableName();
+        RowMapper<Track> mapper = (RowMapper<Track>) RowMapper.create(table);
+        return executeQuery(FIND_ALL_TRACKS_JOIN_ALBUM, mapper);
     }
+
 }

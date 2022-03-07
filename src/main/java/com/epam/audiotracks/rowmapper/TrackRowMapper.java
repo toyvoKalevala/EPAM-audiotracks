@@ -1,7 +1,6 @@
 package com.epam.audiotracks.rowmapper;
 
 import com.epam.audiotracks.entity.Track;
-import com.epam.audiotracks.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +13,11 @@ public class TrackRowMapper implements RowMapper<Track> {
 
     @Override
     public Track map(ResultSet resultSet) throws SQLException {
-        return new Track(resultSet.getString("name"));
+        logger.debug("Try to create track");
+        return new Track(resultSet.getInt("id"),
+                         resultSet.getString("name"),
+                         resultSet.getString("album"),
+                         resultSet.getBigDecimal("price"));
     }
+
 }
