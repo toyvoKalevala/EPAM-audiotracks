@@ -181,7 +181,7 @@ form {
 
 p {
     margin: auto;
-    padding-bottom: 20px;
+    /*padding-bottom: 20px;*/
 }
 
 .flex-table {
@@ -274,7 +274,7 @@ table td {
     padding: 10px 30px;
 }
 
-.about a {
+.about phone {
     font-weight: normal;
     font-size: 12px;
     color: #FFDD00;

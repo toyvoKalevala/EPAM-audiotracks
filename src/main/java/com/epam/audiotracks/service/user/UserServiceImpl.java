@@ -5,7 +5,6 @@ import com.epam.audiotracks.dao.DaoHelperFactory;
 import com.epam.audiotracks.dao.order.OrderDao;
 import com.epam.audiotracks.dao.user.UserDao;
 import com.epam.audiotracks.dto.AudioOrderDto;
-import com.epam.audiotracks.entity.Order;
 import com.epam.audiotracks.entity.User;
 import com.epam.audiotracks.exeption.DaoException;
 import com.epam.audiotracks.exeption.ServiceException;
@@ -58,10 +57,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<AudioOrderDto> getAllUserOrders(int id) throws ServiceException {
+    public List<AudioOrderDto> getUnpaidUserOrders(int id) throws ServiceException {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             OrderDao orderDao = daoHelper.createOrderDao();
-            return orderDao.findAllByUserId(id);
+            return orderDao.findUnpaidOrdersByUserId(id);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<AudioOrderDto> getPaidUserOrders(int id) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            OrderDao orderDao = daoHelper.createOrderDao();
+            return orderDao.findPaidOrdersByUserId(id);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

@@ -6,7 +6,6 @@ import com.epam.audiotracks.dao.order.OrderDao;
 import com.epam.audiotracks.entity.Order;
 import com.epam.audiotracks.exeption.DaoException;
 import com.epam.audiotracks.exeption.ServiceException;
-import com.epam.audiotracks.service.order.OrderService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,8 +23,19 @@ public class OrderServiceImpl implements OrderService {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             OrderDao orderDao = daoHelper.createOrderDao();
             orderDao.save(order);
-        }catch (DaoException e){
+        } catch (DaoException e) {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public void payForOrder(int id) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            OrderDao orderDao = daoHelper.createOrderDao();
+            orderDao.update(id);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
 }

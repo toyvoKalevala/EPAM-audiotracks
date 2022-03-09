@@ -7,4 +7,6 @@ public interface OrderService {
 
     void createOrder(Order order) throws ServiceException;
 
+    void payForOrder(int id) throws ServiceException;
+
 }

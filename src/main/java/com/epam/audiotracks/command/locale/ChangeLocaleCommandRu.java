@@ -11,7 +11,6 @@ import java.util.Optional;
 
 public class ChangeLocaleCommandRu implements Command {
 
-    private static final String MAIN_PAGE = "WEB-INF/view/mainPage.jsp";
     private static final String LOGIN_PAGE = "WEB-INF/view/index.jsp";
 
     @Override
@@ -21,7 +20,7 @@ public class ChangeLocaleCommandRu implements Command {
         session.setAttribute("langImg", "static/images/rus.jpg");
         User user = (User) session.getAttribute("user");
         if (user != null) {
-            return MAIN_PAGE;
+            return "/controller?command=selectTracks";
         } else {
             return LOGIN_PAGE;
         }

@@ -20,27 +20,28 @@
     <jsp:include page="leftColumn.jsp"/>
 
     <div class="main">
-        <table>
-            <thead>
-            <tr style="padding-top: 10px">
-                <th><fmt:message key="label.trackName"/></th>
-                <th><fmt:message key="track.price"/></th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <form method="post" action="controller?command=payForTracks"/>
-            <input type="submit" value="<fmt:message key="button.payForTracks"/>"/>
-            <form/>
-
-            <c:forEach var="order" items="${orders}">
-                <tr>
-                    <td>${order.trackName}</td>
-                    <td>${order.price}</td>
+        <c:if test="${not empty paidOrders}">
+<%--            <p><fmt:message key="label.ordersHistory"/></p>--%>
+            <table>
+                <thead>
+                <tr style="padding-top: 10px">
+                    <th><fmt:message key="label.trackName"/></th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+
+                    <%--    <form method="post" action="controller?command=payForTracks"/>--%>
+                    <%--    <input type="submit" value="<fmt:message key="button.payForTracks"/>"/>--%>
+                    <%--    <form/>--%>
+
+                <c:forEach var="paidOrder" items="${paidOrders}">
+                    <tr>
+                        <td>${paidOrder.trackName}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
     </div>
 
 </div>

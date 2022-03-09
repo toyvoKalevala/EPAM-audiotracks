@@ -2,11 +2,8 @@ package com.epam.audiotracks.command.track;
 
 import com.epam.audiotracks.command.Command;
 import com.epam.audiotracks.dto.AudioOrderDto;
-import com.epam.audiotracks.entity.Order;
 import com.epam.audiotracks.entity.User;
 import com.epam.audiotracks.exeption.ServiceException;
-import com.epam.audiotracks.service.order.OrderServiceImpl;
-import com.epam.audiotracks.service.order.OrderService;
 import com.epam.audiotracks.service.user.UserService;
 import com.epam.audiotracks.service.user.UserServiceImpl;
 import org.apache.logging.log4j.LogManager;
@@ -28,8 +25,9 @@ public class UserTracksCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         User user = (User) request.getSession().getAttribute("user");
-        List<AudioOrderDto> orders = userService.getAllUserOrders(user.getId());
-        request.setAttribute("orders", orders);
+        List<AudioOrderDto> paidOrders = userService.getPaidUserOrders(user.getId());
+        request.setAttribute("paidOrders", paidOrders);
         return "WEB-INF/view/myTracks.jsp";
     }
+
 }

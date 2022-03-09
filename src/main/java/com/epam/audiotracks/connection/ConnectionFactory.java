@@ -11,7 +11,7 @@ public class ConnectionFactory {
     private static final Logger logger = LogManager.getLogger();
 
     public static ProxyConnection create(ConnectionPool pool) throws SQLException {
-        DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         logger.debug("Driver was registered");
         String url = "jdbc:mysql://localhost:3306/audiotracks";
         String user = "root";

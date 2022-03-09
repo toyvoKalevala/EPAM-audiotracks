@@ -7,7 +7,7 @@
 <footer class="footer">
 
     <div class="about">
-        <a href="index.jsp">+375 29 000 00 00</a>
+        <phone>+375 29 000 00 00</phone>
     </div>
 
 </footer>
