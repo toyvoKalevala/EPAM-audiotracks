@@ -1,7 +1,7 @@
 package com.epam.audiotracks.dao.order;
 
 import com.epam.audiotracks.dao.Dao;
-import com.epam.audiotracks.dto.AudioOrderDto;
+import com.epam.audiotracks.dto.TracksOrderDto;
 import com.epam.audiotracks.entity.Order;
 import com.epam.audiotracks.exeption.DaoException;
 
@@ -13,8 +13,8 @@ public interface OrderDao extends Dao<Order> {
 
     void update(int id) throws DaoException;
 
-    List<AudioOrderDto> findUnpaidOrdersByUserId(int id) throws DaoException;
+    List<TracksOrderDto> findUnpaidOrdersByUserId(int id) throws DaoException;
 
-    List<AudioOrderDto> findPaidOrdersByUserId(int id) throws DaoException;
+    List<TracksOrderDto> findPaidOrdersByUserId(int id) throws DaoException;
 
 }

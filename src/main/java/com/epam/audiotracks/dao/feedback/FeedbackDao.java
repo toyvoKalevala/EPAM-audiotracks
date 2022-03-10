@@ -10,4 +10,7 @@ import java.util.List;
 public interface FeedbackDao extends Dao<Feedback> {
 
     List<Feedback> getAll() throws DaoException;
+
+    void save(Feedback feedback) throws DaoException;
+
 }

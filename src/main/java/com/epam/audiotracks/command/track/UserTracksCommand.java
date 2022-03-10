@@ -1,7 +1,7 @@
 package com.epam.audiotracks.command.track;
 
 import com.epam.audiotracks.command.Command;
-import com.epam.audiotracks.dto.AudioOrderDto;
+import com.epam.audiotracks.dto.TracksOrderDto;
 import com.epam.audiotracks.entity.User;
 import com.epam.audiotracks.exeption.ServiceException;
 import com.epam.audiotracks.service.user.UserService;
@@ -25,9 +25,9 @@ public class UserTracksCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         User user = (User) request.getSession().getAttribute("user");
-        List<AudioOrderDto> paidOrders = userService.getPaidUserOrders(user.getId());
-        request.setAttribute("paidOrders", paidOrders);
-        return "WEB-INF/view/myTracks.jsp";
+        List<TracksOrderDto> userTracks = userService.getPaidUserOrders(user.getId());
+        request.setAttribute("userTracks", userTracks);
+        return "WEB-INF/view/myTracksPage.jsp";
     }
 
 }

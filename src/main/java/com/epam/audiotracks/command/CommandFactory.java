@@ -1,11 +1,14 @@
 package com.epam.audiotracks.command;
 
+import com.epam.audiotracks.command.feedback.AddFeedbackCommand;
+import com.epam.audiotracks.command.feedback.ShowFeedbackPageCommand;
 import com.epam.audiotracks.command.locale.ChangeLocaleCommandBy;
 import com.epam.audiotracks.command.locale.ChangeLocaleCommandEng;
 import com.epam.audiotracks.command.locale.ChangeLocaleCommandRu;
 import com.epam.audiotracks.command.track.*;
 import com.epam.audiotracks.command.user.*;
 import com.epam.audiotracks.dao.DaoHelperFactory;
+import com.epam.audiotracks.service.feedback.FeedbackServiceImpl;
 import com.epam.audiotracks.service.order.OrderServiceImpl;
 import com.epam.audiotracks.service.user.UserServiceImpl;
 import com.epam.audiotracks.service.track.TrackServiceImpl;
@@ -40,6 +43,10 @@ public class CommandFactory {
                 return new OrderTrackCommand(new OrderServiceImpl(new DaoHelperFactory()));
             case "payForTracks":
                 return new PayForTracksCommand(new OrderServiceImpl(new DaoHelperFactory()));
+            case "showFeedbackPage":
+                return new ShowFeedbackPageCommand(new FeedbackServiceImpl(new DaoHelperFactory()));
+            case "addFeedback":
+                return new AddFeedbackCommand(new FeedbackServiceImpl(new DaoHelperFactory()));
             default:
                 throw new IllegalArgumentException("Unknown command = " + command);
         }

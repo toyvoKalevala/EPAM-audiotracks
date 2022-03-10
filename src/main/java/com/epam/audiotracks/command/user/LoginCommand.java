@@ -34,7 +34,7 @@ public class LoginCommand implements Command {
             logger.info("Credentials OK");
             return "/controller?command=selectTracks";
         } else {
-            request.setAttribute("errorMessage", "Invalid Credentials");
+            request.setAttribute("errorMessage", "label.loginError");
             logger.error("Invalid credentials");
             return "WEB-INF/view/index.jsp";
         }

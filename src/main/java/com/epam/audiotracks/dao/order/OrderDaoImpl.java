@@ -1,7 +1,7 @@
 package com.epam.audiotracks.dao.order;
 
 import com.epam.audiotracks.dao.AbstractDao;
-import com.epam.audiotracks.dto.AudioOrderDto;
+import com.epam.audiotracks.dto.TracksOrderDto;
 import com.epam.audiotracks.entity.Order;
 import com.epam.audiotracks.exeption.DaoException;
 import com.epam.audiotracks.rowmapper.dto.AudioOrderDtoRowMapper;
@@ -17,11 +17,11 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     private static final String CREATE_ORDER = "INSERT Orders (user_id, track_id, is_paid, order_date) " +
             "VALUES(?, ?, ?, ?)";
-    private static final String FIND_UNPAID_ORDERS_JOIN_TRACKS_BY_USER_ID = "SELECT tracks.name, price, order_date " +
-            "FROM audiotracks.orders " +
+    private static final String FIND_UNPAID_ORDERS_JOIN_TRACKS_BY_USER_ID = "SELECT  tracks.id, tracks.name, price, order_date " +
+            "FROM orders " +
             "inner join tracks on track_id=tracks.id where is_paid = 0 and user_id = ?;";
-    private static final String FIND_PAID_ORDERS_JOIN_TRACKS_BY_USER_ID = "SELECT tracks.name, price, order_date " +
-            "FROM audiotracks.orders " +
+    private static final String FIND_PAID_ORDERS_JOIN_TRACKS_BY_USER_ID = "SELECT tracks.id, tracks.name, price, order_date " +
+            "FROM orders " +
             "inner join tracks on track_id=tracks.id where is_paid = 1 and user_id = ?;";
     private static final String UPDATE_ORDER_BY_USER_ID = "UPDATE orders SET is_paid = 1 WHERE user_id = ?";
 
@@ -45,15 +45,14 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
-    public List<AudioOrderDto> findUnpaidOrdersByUserId(int id) throws DaoException {
+    public List<TracksOrderDto> findUnpaidOrdersByUserId(int id) throws DaoException {
         return executeJoinQuery(FIND_UNPAID_ORDERS_JOIN_TRACKS_BY_USER_ID, new AudioOrderDtoRowMapper(), id);
     }
 
     @Override
-    public List<AudioOrderDto> findPaidOrdersByUserId(int id) throws DaoException {
+    public List<TracksOrderDto> findPaidOrdersByUserId(int id) throws DaoException {
         return executeJoinQuery(FIND_PAID_ORDERS_JOIN_TRACKS_BY_USER_ID, new AudioOrderDtoRowMapper(), id);
     }
-
 
 
 }

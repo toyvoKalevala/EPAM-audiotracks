@@ -14,6 +14,8 @@ import java.util.List;
 public class FeedbackDaoImpl extends AbstractDao<Feedback> implements FeedbackDao {
 
     private static final String GET_ALL_FEEDBACKS = "SELECT * FROM feedbacks";
+    private static final String SAVE_FEEDBACK = "INSERT feedbacks (user_id, track_id, feedback_date, feedback_text) " +
+            "VALUES(?, ?, ?, ?)";
 
     private static final Logger logger = LogManager.getLogger();
 
@@ -29,5 +31,10 @@ public class FeedbackDaoImpl extends AbstractDao<Feedback> implements FeedbackDa
     @Override
     public List<Feedback> getAll() throws DaoException {
         return executeQuery(GET_ALL_FEEDBACKS, new FeedbackRowMapper());
+    }
+
+    @Override
+    public void save(Feedback feedback) throws DaoException {
+        executeUpdate(SAVE_FEEDBACK, feedback.getUserId(), feedback.getTrackId(), feedback.getDateTime(), feedback.getText());
     }
 }

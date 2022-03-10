@@ -13,6 +13,10 @@ public class FeedbackRowMapper implements RowMapper<Feedback> {
 
     @Override
     public Feedback map(ResultSet resultSet) throws SQLException {
-        return new Feedback(resultSet.getString("feedback_text"));
+        return new Feedback(resultSet.getInt("user_id"),
+                            resultSet.getInt("track_id"),
+                            resultSet.getString("feedback_date"),
+                            resultSet.getString("feedback_text"));
     }
+
 }

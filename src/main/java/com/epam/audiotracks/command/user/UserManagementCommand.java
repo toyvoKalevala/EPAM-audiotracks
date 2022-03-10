@@ -24,6 +24,6 @@ public class UserManagementCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         List<User> users = userService.getAllUsers();
         request.setAttribute("users", users);
-        return "WEB-INF/view/userManagement.jsp";
+        return "WEB-INF/view/userManagementPage.jsp";
     }
 }

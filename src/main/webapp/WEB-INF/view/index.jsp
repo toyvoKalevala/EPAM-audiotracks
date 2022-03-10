@@ -20,7 +20,11 @@
         <label class="login-row" for="password"><fmt:message key="label.password"/></label>
         <input class="login-row" type="password" name="password"/>
         <input class="login-row-btn" type="submit" value="<fmt:message key="button.login"/>"/>
-        <label style="color:red" ;>${errorMessage}</label>
+        <label style="color:red" ;>
+            <c:if test="${not empty errorMessage}">
+                <fmt:message key="${errorMessage}"/>
+            </c:if>
+        </label>
     </form>
 </div>
 

@@ -20,23 +20,31 @@
     <jsp:include page="leftColumn.jsp"/>
 
     <div class="main">
-        <c:if test="${not empty paidOrders}">
-<%--            <p><fmt:message key="label.ordersHistory"/></p>--%>
-            <table>
+
+        <label style="color:black" ;>
+            <c:if test="${not empty txForFeedback}">
+                <fmt:message key="${txForFeedback}"/>
+            </c:if>
+        </label>
+
+        <c:if test="${not empty userTracks}">
+            <table style="width: fit-content">
                 <thead>
                 <tr style="padding-top: 10px">
                     <th><fmt:message key="label.trackName"/></th>
                 </tr>
                 </thead>
                 <tbody>
-
-                    <%--    <form method="post" action="controller?command=payForTracks"/>--%>
-                    <%--    <input type="submit" value="<fmt:message key="button.payForTracks"/>"/>--%>
-                    <%--    <form/>--%>
-
-                <c:forEach var="paidOrder" items="${paidOrders}">
+                <c:forEach var="userTrack" items="${userTracks}">
                     <tr>
-                        <td>${paidOrder.trackName}</td>
+                        <td>${userTrack.trackName}</td>
+                        <td>
+                            <form style="position: relative; top: 0; left: 0; margin: auto" method="post"
+                                  action="controller?command=showFeedbackPage">
+                                <input type="hidden" value="${userTrack.trackId}" name="trackId"/>
+                                <input type="submit" value="<fmt:message key="button.addFeedback"/>"/>
+                            </form>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
