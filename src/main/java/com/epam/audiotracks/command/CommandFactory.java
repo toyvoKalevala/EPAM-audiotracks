@@ -47,6 +47,8 @@ public class CommandFactory {
                 return new ShowFeedbackPageCommand(new FeedbackServiceImpl(new DaoHelperFactory()));
             case "addFeedback":
                 return new AddFeedbackCommand(new FeedbackServiceImpl(new DaoHelperFactory()));
+            case "addNewTrack":
+                return new AddNewTrackCommand(new TrackServiceImpl(new DaoHelperFactory()));
             default:
                 throw new IllegalArgumentException("Unknown command = " + command);
         }

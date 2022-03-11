@@ -4,6 +4,7 @@ import com.epam.audiotracks.dao.DaoHelper;
 import com.epam.audiotracks.dao.DaoHelperFactory;
 import com.epam.audiotracks.dao.track.TrackDao;
 import com.epam.audiotracks.dao.user.UserDao;
+import com.epam.audiotracks.dto.AddTrackDto;
 import com.epam.audiotracks.entity.Track;
 import com.epam.audiotracks.entity.User;
 import com.epam.audiotracks.exeption.DaoException;
@@ -27,6 +28,16 @@ public class TrackServiceImpl implements TrackService {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             TrackDao trackDao = daoHelper.createTrackDao();
             return trackDao.findAll();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void addTrack(AddTrackDto newTrack) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            TrackDao trackDao = daoHelper.createTrackDao();
+            trackDao.save(newTrack);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
