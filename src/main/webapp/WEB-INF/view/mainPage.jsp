@@ -29,25 +29,11 @@
 
         <c:if test="${isAdmin == true}">
 
-            <label style="color:black; font-size: 20px;" ;>
-                <c:if test="${not empty successAdding}">
-                    <fmt:message key="${successAdding}"/>
-                </c:if>
-            </label>
-
             <jsp:include page="addNewTrack.jsp"/>
 
-            <div class="admin-button">
+            <jsp:include page="addNewAlbum.jsp"/>
 
-                <p><fmt:message key="button.addNewGenre"/></p>
-
-            </div>
-
-            <div class="admin-button">
-
-                <p><fmt:message key="button.addNewAlbum"/></p>
-
-            </div>
+            <jsp:include page="addTrackToAlbum.jsp"/>
 
         </c:if>
 

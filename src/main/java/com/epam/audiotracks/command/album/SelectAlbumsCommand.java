@@ -1,10 +1,10 @@
-package com.epam.audiotracks.command.track;
+package com.epam.audiotracks.command.album;
 
 import com.epam.audiotracks.command.Command;
+import com.epam.audiotracks.entity.Album;
 import com.epam.audiotracks.entity.Track;
 import com.epam.audiotracks.exeption.ServiceException;
-import com.epam.audiotracks.service.track.TrackService;
-import com.epam.audiotracks.service.track.TrackServiceImpl;
+import com.epam.audiotracks.service.album.AlbumService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class SelectTracksCommand implements Command {
+public class SelectAlbumsCommand implements Command {
 
-    private final TrackService trackService;
+    private final AlbumService albumService;
     private static final Logger logger = LogManager.getLogger();
 
-    public SelectTracksCommand(TrackServiceImpl trackService) {
-        this.trackService = trackService;
+    public SelectAlbumsCommand(AlbumService albumService) {
+        this.albumService = albumService;
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-        List<Track> tracks = trackService.getAllTracks();
-        request.setAttribute("tracks", tracks);
-        return "/controller?command=selectAlbums";
+        List<Album> albums = albumService.getAllAlbums();
+        request.setAttribute("albums", albums);
+        return "WEB-INF/view/mainPage.jsp";
     }
 
 }
