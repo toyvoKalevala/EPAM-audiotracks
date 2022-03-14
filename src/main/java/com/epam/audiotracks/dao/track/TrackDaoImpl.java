@@ -19,6 +19,7 @@ public class TrackDaoImpl extends AbstractDao<Track> implements TrackDao {
             "from tracks " +
             "inner join albums on album_id=albums.id";
     private static final String SAVE_TRACK = "INSERT tracks (name, album_id, price) VALUES(?, ?, ?)";
+    private static final String UPDATE_TRACK = "UPDATE tracks SET album_id = ? WHERE id = ?";
 
     public TrackDaoImpl(Connection connection) {
         super(connection);
@@ -39,6 +40,11 @@ public class TrackDaoImpl extends AbstractDao<Track> implements TrackDao {
     @Override
     public void save(AddTrackDto newTrack) throws DaoException {
         executeUpdate(SAVE_TRACK, newTrack.getName(), newTrack.getAlbumId(), newTrack.getPrice());
+    }
+
+    @Override
+    public void update(int trackId, int albumId) throws DaoException {
+        executeUpdate(UPDATE_TRACK, albumId, trackId);
     }
 
 }

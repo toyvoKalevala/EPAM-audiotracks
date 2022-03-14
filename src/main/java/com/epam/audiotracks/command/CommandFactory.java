@@ -53,6 +53,8 @@ public class CommandFactory {
                 return new AddNewTrackCommand(new TrackServiceImpl(new DaoHelperFactory()));
             case "selectAlbums":
                 return new SelectAlbumsCommand(new AlbumServiceImpl(new DaoHelperFactory()));
+            case "addTrackToAlbum":
+                return new AddTrackToAlbumCommand(new TrackServiceImpl(new DaoHelperFactory()));
             default:
                 throw new IllegalArgumentException("Unknown command = " + command);
         }

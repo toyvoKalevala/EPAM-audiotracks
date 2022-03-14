@@ -258,6 +258,10 @@ table td {
     padding: 5px;
 }
 
+details {
+    font-size: smaller;
+}
+
 /*******FOOTER******/
 
 .footer {

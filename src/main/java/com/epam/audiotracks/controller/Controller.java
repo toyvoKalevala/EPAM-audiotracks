@@ -37,11 +37,11 @@ public class Controller extends HttpServlet {
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, DaoException {
         String commandLine = request.getParameter("command");
-        logger.info("Got command" + commandLine);
+        logger.info("Got command " + commandLine);
         CommandFactory commandFactory = new CommandFactory();
         logger.info("Create CommandFactory");
         Command command = commandFactory.createCommand(commandLine);
-        logger.info("Create Command" + commandLine);
+        logger.info("Create Command " + commandLine);
         String page = command.execute(request, response);
         logger.info("Execute command " + commandLine);
         request.getRequestDispatcher(page).forward(request, response);

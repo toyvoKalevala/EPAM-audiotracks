@@ -12,4 +12,6 @@ public interface TrackService {
 
     void addTrack(AddTrackDto newTrack) throws ServiceException;
 
+    void addTrackToAlbum(int trackId, int albumId) throws ServiceException;
+
 }

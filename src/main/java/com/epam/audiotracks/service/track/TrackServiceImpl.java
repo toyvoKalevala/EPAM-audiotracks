@@ -43,4 +43,14 @@ public class TrackServiceImpl implements TrackService {
         }
     }
 
+    @Override
+    public void addTrackToAlbum(int trackId, int albumId) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            TrackDao trackDao = daoHelper.createTrackDao();
+            trackDao.update(trackId, albumId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
 }

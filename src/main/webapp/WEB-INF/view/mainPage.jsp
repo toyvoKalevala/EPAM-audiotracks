@@ -29,11 +29,23 @@
 
         <c:if test="${isAdmin == true}">
 
-            <jsp:include page="addNewTrack.jsp"/>
-
-            <jsp:include page="addNewAlbum.jsp"/>
-
-            <jsp:include page="addTrackToAlbum.jsp"/>
+            <details>
+                <summary>Add new track</summary>
+                <br/>
+                <jsp:include page="addNewTrack.jsp"/>
+            </details>
+            <br/>
+            <details>
+                <summary>Add new album</summary>
+                <br/>
+                <jsp:include page="addNewAlbum.jsp"/>
+            </details>
+            <br/>
+            <details>
+                <summary>Add track to album</summary>
+                <br/>
+                <jsp:include page="addTrackToAlbum.jsp"/>
+            </details>
 
         </c:if>
 
