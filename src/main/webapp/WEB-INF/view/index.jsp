@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="components/header.jsp"/>
 
 <div class="container">
     <form method="post" action="controller?command=login">
@@ -28,7 +28,7 @@
     </form>
 </div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="components/footer.jsp"/>
 
 </body>
 

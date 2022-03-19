@@ -22,7 +22,7 @@ public class ShowFeedbackPageCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         int trackId = Integer.parseInt(request.getParameter("trackId"));
         request.setAttribute("trackId", trackId);
-        return "WEB-INF/view/addFeedbackPage.jsp";
+        return "WEB-INF/view/pages/addFeedbackPage.jsp";
     }
 
 }

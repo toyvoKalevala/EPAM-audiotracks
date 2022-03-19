@@ -8,4 +8,7 @@ import java.util.List;
 public interface AlbumService {
 
     List<Album> getAllAlbums() throws ServiceException;
+
+    void addAlbum(String name) throws ServiceException;
+
 }

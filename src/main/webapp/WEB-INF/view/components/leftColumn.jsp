@@ -10,7 +10,7 @@
             <a class="button-menu" href="controller?command=userOrders"><fmt:message key="menu.userOrders"/></a>
             <a class="button-menu" href="controller?command=userTracks"><fmt:message key="menu.userTracks"/></a>
         </c:if>
-        <a class="button-menu" href="test.html"><fmt:message key="menu.catalog"/></a>
+        <a class="button-menu" href="controller?command=trackCatalog"><fmt:message key="menu.catalog"/></a>
         <c:if test="${isAdmin == true}">
             <a class="button-menu" href="controller?command=userManagement"><fmt:message key="menu.users"/></a>
         </c:if>

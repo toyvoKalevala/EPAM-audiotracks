@@ -4,6 +4,8 @@ import com.epam.audiotracks.connection.ConnectionPool;
 import com.epam.audiotracks.connection.ProxyConnection;
 import com.epam.audiotracks.dao.album.AlbumDao;
 import com.epam.audiotracks.dao.album.AlbumDaoImpl;
+import com.epam.audiotracks.dao.assembly.AssemblyDao;
+import com.epam.audiotracks.dao.assembly.AssemblyDaoImpl;
 import com.epam.audiotracks.dao.feedback.FeedbackDao;
 import com.epam.audiotracks.dao.feedback.FeedbackDaoImpl;
 import com.epam.audiotracks.dao.order.OrderDao;
@@ -37,7 +39,7 @@ public class DaoHelper implements AutoCloseable {
         return new FeedbackDaoImpl(connection);
     }
 
-    public OrderDao createOrderDao () {
+    public OrderDao createOrderDao() {
         return new OrderDaoImpl(connection);
     }
 
@@ -48,6 +50,10 @@ public class DaoHelper implements AutoCloseable {
     @Override
     public void close() {
         connection.returnConnection();
+    }
+
+    public AssemblyDao createAssemblyDao() {
+        return new AssemblyDaoImpl(connection);
     }
 
 }

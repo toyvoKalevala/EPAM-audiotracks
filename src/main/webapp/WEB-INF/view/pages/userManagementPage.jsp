@@ -13,11 +13,11 @@
 
 <body>
 
-<jsp:include page="mainHeader.jsp"/>
+<jsp:include page="../components/mainHeader.jsp"/>
 
 <div class="flex-container">
 
-    <jsp:include page="leftColumn.jsp"/>
+    <jsp:include page="../components/leftColumn.jsp"/>
 
     <div class="main">
         <table>
@@ -61,7 +61,7 @@
 
 </div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../components/footer.jsp"/>
 
 </body>
 

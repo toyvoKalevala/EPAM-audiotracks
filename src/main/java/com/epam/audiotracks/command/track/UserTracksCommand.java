@@ -27,7 +27,7 @@ public class UserTracksCommand implements Command {
         User user = (User) request.getSession().getAttribute("user");
         List<TracksOrderDto> userTracks = userService.getPaidUserOrders(user.getId());
         request.setAttribute("userTracks", userTracks);
-        return "WEB-INF/view/myTracksPage.jsp";
+        return "WEB-INF/view/pages/myTracksPage.jsp";
     }
 
 }

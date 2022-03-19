@@ -27,7 +27,7 @@ public class ChangeDiscountCommand implements Command {
         userService.changeUserDiscount(discount, id);
         List<User> users = userService.getAllUsers();
         request.setAttribute("users", users);
-        return "WEB-INF/view/userManagementPage.jsp";
+        return "WEB-INF/view/pages/userManagementPage.jsp";
     }
 
 }

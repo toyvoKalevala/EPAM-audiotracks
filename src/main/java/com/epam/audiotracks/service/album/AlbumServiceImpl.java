@@ -30,4 +30,14 @@ public class AlbumServiceImpl implements AlbumService {
         }
     }
 
+    @Override
+    public void addAlbum(String name) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            AlbumDao albumDao = daoHelper.createAlbumDao();
+            albumDao.save(name);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
 }

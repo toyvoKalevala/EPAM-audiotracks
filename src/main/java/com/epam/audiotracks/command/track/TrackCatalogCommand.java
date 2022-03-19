@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class SelectTracksCommand implements Command {
+public class TrackCatalogCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger();
 
     private final TrackService trackService;
 
-    public SelectTracksCommand(TrackServiceImpl trackService) {
+    public TrackCatalogCommand(TrackServiceImpl trackService) {
         this.trackService = trackService;
     }
 
@@ -26,7 +26,6 @@ public class SelectTracksCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         List<Track> tracks = trackService.getAllTracks();
         request.setAttribute("tracks", tracks);
-        return "/controller?command=selectAlbums";
+        return "WEB-INF/view/pages/trackCatalogPage.jsp";
     }
-
 }

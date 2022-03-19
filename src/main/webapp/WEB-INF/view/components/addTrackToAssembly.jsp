@@ -4,13 +4,7 @@
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="languages"/>
 
-<label style="color:black; font-size: 20px;" ;>
-    <c:if test="${not empty successAdding}">
-        <fmt:message key="${successAdding}"/>
-    </c:if>
-</label>
-
-<form style="position: relative; top: 0; left: 0" method="post" action="controller?command=addTrackToAlbum">
+<form style="position: relative; top: 0; left: 0" method="post" action="controller?command=addTrackToAssembly">
 
     <select name="trackId" style="padding: 6px; font-size: medium;">
         <c:forEach var="track" items="${tracks}">
@@ -18,12 +12,12 @@
         </c:forEach>
     </select>
 
-    <select name="albumId" style="padding: 6px; font-size: medium;">
-        <c:forEach var="album" items="${albums}">
-            <option name="albumId" value="${album.id}">${album.name}</option>
+    <select name="assemblyId" style="padding: 6px; font-size: medium;">
+        <c:forEach var="assembly" items="${assemblies}">
+            <option name="assemblyId" value="${assembly.id}">${assembly.name}</option>
         </c:forEach>
     </select>
 
-    <input type="submit" value="<fmt:message key="button.addTrackToAlbum"/>"/>
+    <input type="submit" value="<fmt:message key="button.addTrackToAssembly"/>"/>
 
 </form>

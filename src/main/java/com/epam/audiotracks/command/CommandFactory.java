@@ -1,6 +1,10 @@
 package com.epam.audiotracks.command;
 
+import com.epam.audiotracks.command.assembly.AddNewAssemblyCommand;
+import com.epam.audiotracks.command.album.AddNewAlbumCommand;
 import com.epam.audiotracks.command.album.SelectAlbumsCommand;
+import com.epam.audiotracks.command.assembly.AddTrackToAssemblyCommand;
+import com.epam.audiotracks.command.assembly.SelectAssembliesCommand;
 import com.epam.audiotracks.command.feedback.AddFeedbackCommand;
 import com.epam.audiotracks.command.feedback.ShowFeedbackPageCommand;
 import com.epam.audiotracks.command.locale.ChangeLocaleCommandBy;
@@ -10,6 +14,7 @@ import com.epam.audiotracks.command.track.*;
 import com.epam.audiotracks.command.user.*;
 import com.epam.audiotracks.dao.DaoHelperFactory;
 import com.epam.audiotracks.service.album.AlbumServiceImpl;
+import com.epam.audiotracks.service.assembly.AssemblyServiceImpl;
 import com.epam.audiotracks.service.feedback.FeedbackServiceImpl;
 import com.epam.audiotracks.service.order.OrderServiceImpl;
 import com.epam.audiotracks.service.user.UserServiceImpl;
@@ -43,6 +48,8 @@ public class CommandFactory {
                 return new UserTracksCommand(new UserServiceImpl(new DaoHelperFactory()));
             case "orderTrack":
                 return new OrderTrackCommand(new OrderServiceImpl(new DaoHelperFactory()));
+            case "orderTrackFromCatalog":
+                return new OrderTrackFromCatalogCommand(new OrderServiceImpl(new DaoHelperFactory()));
             case "payForTracks":
                 return new PayForTracksCommand(new OrderServiceImpl(new DaoHelperFactory()));
             case "showFeedbackPage":
@@ -55,6 +62,16 @@ public class CommandFactory {
                 return new SelectAlbumsCommand(new AlbumServiceImpl(new DaoHelperFactory()));
             case "addTrackToAlbum":
                 return new AddTrackToAlbumCommand(new TrackServiceImpl(new DaoHelperFactory()));
+            case "addNewAlbum":
+                return new AddNewAlbumCommand(new AlbumServiceImpl(new DaoHelperFactory()));
+            case "addNewAssembly":
+                return new AddNewAssemblyCommand(new AssemblyServiceImpl(new DaoHelperFactory()));
+            case "selectAssemblies":
+                return new SelectAssembliesCommand(new AssemblyServiceImpl(new DaoHelperFactory()));
+            case "addTrackToAssembly":
+                return new AddTrackToAssemblyCommand(new AssemblyServiceImpl(new DaoHelperFactory()));
+            case "trackCatalog":
+                return new TrackCatalogCommand(new TrackServiceImpl(new DaoHelperFactory()));
             default:
                 throw new IllegalArgumentException("Unknown command = " + command);
         }
