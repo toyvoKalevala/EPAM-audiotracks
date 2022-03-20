@@ -29,6 +29,14 @@
             </c:if>
         </label>
 
+        <label style="color:black; font-size: 20px; display: block;
+                   margin-bottom: 20px;">
+            <c:if test="${not empty successDelete}">
+                <fmt:message key="${successDelete}"/>
+                <br/>
+            </c:if>
+        </label>
+
         <jsp:include page="../components/trackCatalog.jsp"/>
 
     </div>

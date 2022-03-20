@@ -17,7 +17,8 @@ public class TrackRowMapper implements RowMapper<Track> {
         return new Track(resultSet.getInt("id"),
                          resultSet.getString("name"),
                          resultSet.getString("album"),
-                         resultSet.getBigDecimal("price"));
+                         resultSet.getBigDecimal("price"),
+                         resultSet.getInt("isBlocked"));
     }
 
 }

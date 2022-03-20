@@ -14,4 +14,6 @@ public interface TrackService {
 
     void addTrackToAlbum(int trackId, int albumId) throws ServiceException;
 
+    void deleteTrack(int trackId) throws ServiceException;
+
 }

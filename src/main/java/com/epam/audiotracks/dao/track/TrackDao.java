@@ -11,4 +11,6 @@ public interface TrackDao extends Dao<Track> {
 
     void update(int trackId, int albumId) throws DaoException;
 
+    void update(int trackId) throws DaoException;
+
 }

@@ -53,4 +53,14 @@ public class TrackServiceImpl implements TrackService {
         }
     }
 
+    @Override
+    public void deleteTrack(int trackId) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            TrackDao trackDao = daoHelper.createTrackDao();
+            trackDao.update(trackId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
 }

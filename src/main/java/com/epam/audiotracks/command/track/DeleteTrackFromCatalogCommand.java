@@ -12,24 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 
-public class AddNewTrackCommand implements Command {
+public class DeleteTrackFromCatalogCommand implements Command {
 
     private static final Logger logger = LogManager.getLogger();
 
     private final TrackService trackService;
 
-    public AddNewTrackCommand(TrackServiceImpl trackService) {
+    public DeleteTrackFromCatalogCommand(TrackServiceImpl trackService) {
         this.trackService = trackService;
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-        String trackName = request.getParameter("trackName");
-        BigDecimal price = BigDecimal.valueOf(Double.parseDouble(request.getParameter("trackPrice")));
-        AddTrackDto newTrack = new AddTrackDto(trackName, 1, price);
-        trackService.addTrack(newTrack);
-        request.setAttribute("successAdding", "label.successAdding");
-        return "controller?command=selectTracks";
+        int trackId = Integer.parseInt(request.getParameter("trackId"));
+        trackService.deleteTrack(trackId);
+        request.setAttribute("successDelete", "label.successDelete");
+        return "controller?command=trackCatalog";
     }
 
 }

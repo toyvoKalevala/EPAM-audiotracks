@@ -10,12 +10,14 @@ public class Track implements Identifiable {
     private final String name;
     private final String album;
     private final BigDecimal price;
+    private final int isBlocked;
 
-    public Track(int id, String name, String album, BigDecimal price) {
+    public Track(int id, String name, String album, BigDecimal price, int isBlocked) {
         this.id = id;
         this.name = name;
         this.album = album;
         this.price = price;
+        this.isBlocked = isBlocked;
     }
 
     public String getName() {
@@ -33,4 +35,9 @@ public class Track implements Identifiable {
     public BigDecimal getPrice() {
         return price;
     }
+
+    public int getIsBlocked() {
+        return isBlocked;
+    }
+
 }

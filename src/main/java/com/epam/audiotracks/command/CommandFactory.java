@@ -72,6 +72,8 @@ public class CommandFactory {
                 return new AddTrackToAssemblyCommand(new AssemblyServiceImpl(new DaoHelperFactory()));
             case "trackCatalog":
                 return new TrackCatalogCommand(new TrackServiceImpl(new DaoHelperFactory()));
+            case "deleteTrackFromCatalog":
+                return new DeleteTrackFromCatalogCommand(new TrackServiceImpl(new DaoHelperFactory()));
             default:
                 throw new IllegalArgumentException("Unknown command = " + command);
         }
