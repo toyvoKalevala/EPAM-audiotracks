@@ -34,7 +34,8 @@ public class OrderTrackFromCatalogCommand implements Command {
         Order order = new Order(user.getId(), trackId, false, dateTime);
         orderService.createOrder(order);
         request.setAttribute("trackIsOrdered", "label.trackIsOrdered");
-        return "/controller?command=trackCatalog";
+        request.setAttribute("redirect", "true");
+        return "controller?command=trackCatalog";
     }
 
 }

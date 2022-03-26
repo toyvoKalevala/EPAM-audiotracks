@@ -2,7 +2,6 @@ package com.epam.audiotracks.controller;
 
 import com.epam.audiotracks.command.Command;
 import com.epam.audiotracks.command.CommandFactory;
-import com.epam.audiotracks.exeption.DaoException;
 import com.epam.audiotracks.exeption.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,32 +18,32 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        try {
-            process(request, response);
-        } catch (ServiceException | DaoException e) {
-            e.printStackTrace();
-        }
+        process(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        try {
-            process(request, response);
-        } catch (ServiceException | DaoException e) {
-            e.printStackTrace();
-        }
+        process(request, response);
     }
 
-    private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ServiceException, DaoException {
-        String commandLine = request.getParameter("command");
-        logger.info("Got command " + commandLine);
-        CommandFactory commandFactory = new CommandFactory();
-        logger.info("Create CommandFactory");
-        Command command = commandFactory.createCommand(commandLine);
-        logger.info("Create Command " + commandLine);
-        String page = command.execute(request, response);
-        logger.info("Execute command " + commandLine);
-        request.getRequestDispatcher(page).forward(request, response);
+    private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String page;
+        try {
+            String commandLine = request.getParameter("command");
+            CommandFactory commandFactory = new CommandFactory();
+            Command command = commandFactory.createCommand(commandLine);
+            page = command.execute(request, response);
+        } catch (ServiceException e) {
+            logger.error(e.getMessage());
+            page = "WEB-INF/view/index.jsp";
+        }
+
+        if (request.getAttribute("redirect") == "true") {
+            response.sendRedirect(page);
+        } else {
+            request.getRequestDispatcher(page).forward(request, response);
+        }
+
     }
 
 }

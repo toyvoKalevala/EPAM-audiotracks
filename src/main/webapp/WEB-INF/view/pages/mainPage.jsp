@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="ex" uri="/WEB-INF/view/tag/custom.tld" %>
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="languages"/>
 
@@ -20,6 +21,8 @@
     <jsp:include page="../components/leftColumn.jsp"/>
 
     <div class="main">
+
+        <ex:Hello/>
 
         <c:if test="${isAdmin == false}">
 

@@ -19,8 +19,12 @@ import com.epam.audiotracks.service.feedback.FeedbackServiceImpl;
 import com.epam.audiotracks.service.order.OrderServiceImpl;
 import com.epam.audiotracks.service.user.UserServiceImpl;
 import com.epam.audiotracks.service.track.TrackServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CommandFactory {
+
+    private static final Logger logger = LogManager.getLogger();
 
     public Command createCommand(String command) {
         switch (command) {
@@ -75,7 +79,8 @@ public class CommandFactory {
             case "deleteTrackFromCatalog":
                 return new DeleteTrackFromCatalogCommand(new TrackServiceImpl(new DaoHelperFactory()));
             default:
-                throw new IllegalArgumentException("Unknown command = " + command);
+                logger.error("Unknown command = " + command);
+                return new GoOnMainCommand();
         }
     }
 }

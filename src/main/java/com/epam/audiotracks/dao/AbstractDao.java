@@ -18,9 +18,9 @@ import java.util.Optional;
 
 public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
 
-    private final Connection connection;
-
     private static final Logger logger = LogManager.getLogger();
+
+    private final Connection connection;
 
     protected AbstractDao(Connection connection) {
         this.connection = connection;
@@ -42,12 +42,12 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
         }
     }
 
-    protected <E extends Dto>List<E> executeJoinQuery(String query, RowMapper<E> mapper, Object... params) throws DaoException {
+    protected <E extends Dto> List<E> executeJoinQuery(String query, RowMapper<E> mapper, Object... params) throws DaoException {
 
-        try(PreparedStatement statement = createStatement(query, params)) {
+        try (PreparedStatement statement = createStatement(query, params)) {
             ResultSet resultSet = statement.executeQuery();
             List<E> entities = new ArrayList<>();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 E entity = mapper.map(resultSet);
                 entities.add(entity);
             }

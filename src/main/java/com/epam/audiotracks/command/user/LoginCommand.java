@@ -13,8 +13,9 @@ import java.util.Optional;
 
 public class LoginCommand implements Command {
 
-    private final UserService userService;
     private static final Logger logger = LogManager.getLogger();
+
+    private final UserService userService;
 
     public LoginCommand(UserService userService) {
         this.userService = userService;
@@ -23,15 +24,11 @@ public class LoginCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         String login = request.getParameter("login");
-        logger.debug("Got login");
         String password = request.getParameter("password");
-        logger.debug("Got password");
         Optional<User> user = userService.login(login, password);
-        logger.info("Get user from DB");
         if (user.isPresent()) {
             request.getSession().setAttribute("user", user.get());
             request.getSession().setAttribute("isAdmin", user.get().getIsAdmin());
-            logger.info("Credentials OK");
             return "/controller?command=selectTracks";
         } else {
             request.setAttribute("errorMessage", "label.loginError");

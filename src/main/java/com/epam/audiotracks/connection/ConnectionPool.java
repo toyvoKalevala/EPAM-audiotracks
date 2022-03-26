@@ -12,6 +12,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPool {
 
+    private static final Logger logger = LogManager.getLogger();
+
     private Queue<ProxyConnection> availableConnections;
     private Queue<ProxyConnection> connectionsInUse;
     private static ConnectionPool instance;
@@ -19,8 +21,6 @@ public class ConnectionPool {
     private static ReentrantLock connectionsLock = new ReentrantLock();
     private static final int POOL_SIZE = 10;
     private static final Semaphore SEMAPHORE = new Semaphore(POOL_SIZE);
-
-    private static final Logger logger = LogManager.getLogger();
 
     public ConnectionPool(Queue<ProxyConnection> availableConnections, Queue<ProxyConnection> connectionsInUse) {
         this.availableConnections = availableConnections;
@@ -56,21 +56,21 @@ public class ConnectionPool {
                 logger.debug("Connection was added in que");
             }
         } catch (SQLException e) {
-            throw new ConnectionRuntimeException(e);
+            logger.error(new ConnectionRuntimeException(e));
         } finally {
             connectionsLock.unlock();
         }
     }
 
     public ProxyConnection getConnection() {
-        ProxyConnection connection;
+        ProxyConnection connection = null;
         try {
             SEMAPHORE.acquire();
             connectionsLock.lock();
             connection = availableConnections.poll();
             connectionsInUse.offer(connection);
         } catch (InterruptedException e) {
-            throw new ConnectionRuntimeException(e);
+            logger.error(new ConnectionRuntimeException(e));
         } finally {
             connectionsLock.unlock();
         }
