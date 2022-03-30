@@ -4,8 +4,16 @@
     <short-name>Example TLD</short-name>
 
     <tag>
-        <name>Hello</name>
+
+        <name>DateTime</name>
         <tag-class>com.epam.audiotracks.tag.MyTag</tag-class>
         <body-content>empty</body-content>
+
+        <attribute>
+            <name>dateTimeFormat</name>
+        </attribute>
+
     </tag>
+
+
 </taglib>

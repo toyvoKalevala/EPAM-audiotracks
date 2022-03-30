@@ -27,7 +27,8 @@ public class AddTrackToAssemblyCommand implements Command {
         int assemblyId = Integer.parseInt(request.getParameter("assemblyId"));
         assemblyService.addTrackToAssembly(trackId, assemblyId);
         request.setAttribute("successAdding", "label.successAdding");
-        return "/controller?command=selectTracks";
+        request.setAttribute("redirect", "true");
+        return "controller?command=selectTracks";
     }
 
 }

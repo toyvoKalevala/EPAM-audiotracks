@@ -33,7 +33,6 @@ public class AddFeedbackCommand implements Command {
         String feedbackText = request.getParameter("feedbackText");
         Feedback feedback = new Feedback(user.getId(), trackId, dateTime, feedbackText);
         feedbackService.createFeedback(feedback);
-        request.setAttribute("txForFeedback", "label.txForFeedBack");
         return "controller?command=userTracks";
     }
 

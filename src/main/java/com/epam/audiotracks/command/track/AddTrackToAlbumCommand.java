@@ -25,7 +25,8 @@ public class AddTrackToAlbumCommand implements Command {
         int trackId = Integer.parseInt(request.getParameter("trackId"));
         int albumId = Integer.parseInt(request.getParameter("albumId"));
         trackService.addTrackToAlbum(trackId, albumId);
-        return "/controller?command=selectTracks";
+        request.setAttribute("redirect", "true");
+        return "controller?command=selectTracks";
     }
 
 }

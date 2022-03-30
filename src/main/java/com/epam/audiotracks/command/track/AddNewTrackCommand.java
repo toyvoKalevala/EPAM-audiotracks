@@ -29,6 +29,7 @@ public class AddNewTrackCommand implements Command {
         AddTrackDto newTrack = new AddTrackDto(trackName, 1, price);
         trackService.addTrack(newTrack);
         request.setAttribute("successAdding", "label.successAdding");
+        request.setAttribute("redirect", "true");
         return "controller?command=selectTracks";
     }
 

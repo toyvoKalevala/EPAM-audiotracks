@@ -26,6 +26,7 @@ public class AddNewAssemblyCommand implements Command {
         String assemblyName = request.getParameter("assemblyName");
         assemblyService.addAssembly(assemblyName);
         request.setAttribute("assemblyAdded", "label.assemblyAdded");
+        request.setAttribute("redirect", "true");
         return "controller?command=selectTracks";
     }
 

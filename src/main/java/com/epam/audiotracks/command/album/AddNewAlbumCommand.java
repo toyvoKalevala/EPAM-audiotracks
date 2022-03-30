@@ -25,6 +25,7 @@ public class AddNewAlbumCommand implements Command {
         String albumName = request.getParameter("albumName");
         albumService.addAlbum(albumName);
         request.setAttribute("albumAdded", "label.albumAdded");
+        request.setAttribute("redirect", "true");
         return "controller?command=selectTracks";
     }
 
