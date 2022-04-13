@@ -21,7 +21,7 @@ public class MyTag extends SimpleTagSupport {
         Date date = new Date();
 
         if (dateTimeFormat.equals("ruBy")) {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
             out.println(dateFormat.format(date));
         } else if (dateTimeFormat.equals("eng")) {
             DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");

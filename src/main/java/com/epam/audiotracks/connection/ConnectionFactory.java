@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
+import java.util.ResourceBundle;
 
 public class ConnectionFactory {
 
@@ -13,15 +13,11 @@ public class ConnectionFactory {
 
     public static ProxyConnection create(ConnectionPool pool) throws SQLException {
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-        logger.debug("Driver was registered");
-        Properties properties = new Properties();
-        properties.put("user", "root");
-        properties.put("password", "root");
-        properties.put("characterEncoding", "UTF-8");
-        properties.put("useUnicode", "true");
-        String url = "jdbc:mysql://localhost:3306/audiotracks";
-        logger.debug("Creating connection");
-        return new ProxyConnection(DriverManager.getConnection(url, properties), pool);
+        ResourceBundle resource = ResourceBundle.getBundle("database");
+        String url = resource.getString("db.url");
+        String user = resource.getString("db.user");
+        String password = resource.getString("db.password");
+        return new ProxyConnection(DriverManager.getConnection(url, user, password), pool);
     }
 
 }
