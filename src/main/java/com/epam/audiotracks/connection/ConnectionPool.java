@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import java.sql.SQLException;
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.ResourceBundle;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -18,9 +19,11 @@ public class ConnectionPool {
     private Queue<ProxyConnection> connectionsInUse;
     private static ConnectionPool instance;
 
-    private static ReentrantLock connectionsLock = new ReentrantLock();
-    private static final int POOL_SIZE = 10;
-    private static final Semaphore SEMAPHORE = new Semaphore(POOL_SIZE);
+    private static final ReentrantLock connectionsLock = new ReentrantLock();
+    private static final ReentrantLock instanceLock = new ReentrantLock();
+
+    private static final int NUM_OF_CONNECTIONS = 50;
+    private static final Semaphore SEMAPHORE = new Semaphore(NUM_OF_CONNECTIONS);
 
     public ConnectionPool(Queue<ProxyConnection> availableConnections, Queue<ProxyConnection> connectionsInUse) {
         this.availableConnections = availableConnections;
@@ -30,7 +33,7 @@ public class ConnectionPool {
     public static ConnectionPool getInstance() {
         ConnectionPool connectionPool = instance;
         if (connectionPool == null) {
-            connectionsLock.lock();
+            instanceLock.lock();
             try {
                 connectionPool = instance;
                 if (connectionPool == null) {
@@ -39,21 +42,20 @@ public class ConnectionPool {
                     instance = connectionPool;
                 }
             } finally {
-                connectionsLock.unlock();
+                instanceLock.unlock();
             }
         }
         return instance;
     }
 
     private void createConnections(ConnectionPool connectionPool) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("database");
+        int poolSize = Integer.parseInt(resourceBundle.getString("db.poolsize"));
         connectionsLock.lock();
-        logger.debug("Lock");
         try {
-            for (int i = 0; i < POOL_SIZE; i++) {
+            for (int i = 0; i < poolSize; i++) {
                 ProxyConnection connection = ConnectionFactory.create(connectionPool);
-                logger.debug("Connection created");
                 connectionPool.availableConnections.offer(connection);
-                logger.debug("Connection was added in que");
             }
         } catch (SQLException e) {
             logger.error(new ConnectionRuntimeException(e));
