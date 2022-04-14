@@ -27,10 +27,10 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     }
 
     protected List<T> executeQuery(String query, RowMapper<T> rowMapper, Object... params) throws DaoException {
-        logger.info("Prepare is: " + query + "params is: " + Arrays.toString(params));
+        logger.debug("Prepare is: " + query + "params is: " + Arrays.toString(params));
         try (PreparedStatement statement = createStatement(query, params)) {
             ResultSet resultSet = statement.executeQuery();
-            logger.info(resultSet);
+            logger.debug(resultSet);
             List<T> entities = new ArrayList<>();
             while (resultSet.next()) {
                 T entity = rowMapper.map(resultSet);
@@ -68,8 +68,7 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
 
     private PreparedStatement createStatement(String query, Object... params) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(query);
-        logger.info(params.length + " " + Arrays.toString(params));
-        logger.info(statement.toString());
+        logger.debug(statement.toString());
         for (int i = 1; i <= params.length; i++) {
             statement.setObject(i, params[i - 1]);
         }
@@ -77,7 +76,7 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     }
 
     protected Optional<T> executeForSingleResult(String query, RowMapper<T> mapper, Object... params) throws DaoException {
-        logger.info("Prepare is: " + query + "params is: " + Arrays.toString(params));
+        logger.debug("Prepare is: " + query + "params is: " + Arrays.toString(params));
         List<T> items = executeQuery(query, mapper, params);
         if (items.size() == 1) {
             return Optional.of(items.get(0));
@@ -95,4 +94,5 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     }
 
     public abstract String getTableName();
+
 }
